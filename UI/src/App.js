@@ -24,7 +24,11 @@ function App() {
         </Route>
         <Route exact path="/signup">
           <Header />
-          <SignBody />
+          <SignBody/>
+        </Route>
+        <Route exact path="/signin">
+          <Header />
+          <SignBody/>
         </Route>
       </Switch>
       </React.Suspense>

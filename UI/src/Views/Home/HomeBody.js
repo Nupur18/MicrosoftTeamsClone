@@ -13,7 +13,9 @@ const HomeBody = () => {
                     <PicCard/>
                 </div>
             </div>
-            <Bottom/>
+            <div className="center">
+                <Bottom />
+            </div>
         </div>
     )
 }

@@ -8,7 +8,7 @@ export const TextCard = () => {
         <div className="col-md-6 mr-0 pr-0 my-5">
             <Card className="my-3" style={{ width: "100%", height: "105%" }}>
                 <Card.Body>
-                    <Card.Title id="title"><b>Microsoft Teams</b></Card.Title>
+                    <Card.Title id="title">Microsoft Teams</Card.Title>
                     <Card.Text as="div" id="text">
                         <dl>
                             <dt>Bridges the gap</dt>
@@ -16,12 +16,18 @@ export const TextCard = () => {
                             <dt>Connects people all around the world</dt>
                         </dl>
                     </Card.Text>
-                    <Link to="/signup">
-                        <Button title="Sign up" />
-                    </Link>
-                    <Link to="/videocall">
-                        <Button title="Sign in" />
-                    </Link>
+                    <div className="row align-items-center">
+                        <div className="col text-center">
+                            <Link to="/signup">
+                                <Button title="Sign up" />
+                            </Link>
+                        </div>
+                        <div className="col text-center">
+                            <Link to="/signin">
+                                <Button title="Sign in" />
+                            </Link>
+                        </div>
+                    </div>
                 </Card.Body>
             </Card>
         </div>

@@ -7,8 +7,10 @@ export const SignBody = () => {
     return (
         <div>
             <div className="container">
-                <div className="row">
-                    <SignCard />
+                <div className="row align-items-center">
+                    <div className="col"></div>
+                    <SignCard/>
+                    <div className="col"></div>
                 </div>
             </div>
             <div className="center">

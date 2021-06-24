@@ -1,8 +1,12 @@
 import React from 'react'
 import './button.css'
 
-export const Button = (props) => {
+const Button = (props) => {
     return (
-        <button type="button" className="btn btn-default">{props.title}</button>
+        <button type={props.type} className="btn btn-default">{props.title}</button>
     )
 }
+Button.defaultProps = {
+    type: "button"
+  }
+export {Button};
