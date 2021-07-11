@@ -7,6 +7,8 @@ import MicIcon from '@material-ui/icons/Mic';
 import VideocamIcon from '@material-ui/icons/Videocam';
 import VideocamOffIcon from '@material-ui/icons/VideocamOff';
 import './callcontrol.scss';
+import { Messages } from '../CallChat/Messages'
+import { Copy } from '../Copy/Copy'
 const CallControl = (props) => {
     const [control, setControl] = useState({ 'microphone': true, 'camera': true });
     const switchControl = (controlProperty) => {
@@ -26,6 +28,8 @@ const CallControl = (props) => {
             <Button variant="contained" color="secondary" onClick={() => switchControl("camera")}>
                 {(control.camera ? <VideocamOffIcon /> : <VideocamIcon />)}
             </Button>
+            <Messages />
+            <Copy />
         </div>
     )
 }

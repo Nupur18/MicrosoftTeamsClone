@@ -1,5 +1,5 @@
 import React from 'react'
-import { Bottom } from '../Bottom.js'
+import { Bottom } from '../../Components/Bottom/Bottom'
 import './signbody.css'
 import { SignCard } from './SignCard.js'
 
@@ -13,7 +13,7 @@ export const SignBody = () => {
                     <div className="col"></div>
                 </div>
             </div>
-            <div className="center">
+            <div className="center my-5">
                 <Bottom />
             </div>
         </div>

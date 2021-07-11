@@ -6,7 +6,7 @@ import './bottom.css'
 
 export const Bottom = () => {
     return (
-        <div className="center my-5">
+        <div className="center">
             <Container>
                 <Row className="justify-content-md-center">
                     <Col className="bottom">Meet</Col>

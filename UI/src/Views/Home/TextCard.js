@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom"
 import Card from 'react-bootstrap/Card'
-import { Button } from '../Button.js'
+import { Button } from '../../Components/Button/Button.js'
 
 export const TextCard = () => {
     return (

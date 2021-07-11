@@ -1,0 +1,64 @@
+#logout {
+    background-color: #E0EBED !important;
+    color: #215566 !important;
+    margin-top: 0% !important;
+    margin-left: 15px;
+}
+
+.navbar-expand-lg {
+    justify-content: space-between;
+}
+
+.initials-avatar {
+    background-color: #09343D !important;
+    height: 42px !important;
+    width: 45px !important;
+}
+
+#avatar {
+    padding-right: 20px;
+}
+
+#video-call-btn {
+    background-color: #E0EBED !important;
+    color: #215566 !important;
+    margin-top: 0% !important;
+    margin-left: 15px;
+}
+
+.btn-nav {
+    background-color: #4B53BC;
+    color: #fff;
+    padding: .7rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #fff;
+}
+
+.ms-auto {
+    margin-left: auto;
+}
+
+.ms-auto a {
+    border-radius: 0px;
+    margin: 15px;
+}
+
+.static {
+    color: #000;
+    margin: 15px;
+}
+
+.static:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+.sign-in-image {
+    width: 40px;
+    height: 40px;
+}
