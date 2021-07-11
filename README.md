@@ -17,13 +17,30 @@ OR
 yarn
 ```
 
-3. Start the server
+
+## Start the backed server
+
+1. Change the directory to node-backend 
+
+2. Install the packages
 ```
-npm run start
+npm install
 ```
 
 OR
 
 ```
-yarn start
+yarn 
+```
+
+3. Enter the dev command
+```
+npm run dev
+```
+
+OR
+
+
+```
+yarn dev
 ```
