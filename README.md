@@ -1,20 +1,22 @@
-# Microsoft Teams clone
+# Microsoft Teams Clone
 
 ## Folder structure
 
-- *Views* : This is for storing pages
-- *Components* : This is for storing elements/components
+- *UI* : Front-end part of webapp
+- *Server* : Back-end part of webapp
 
 
 ## Installation
-1. Clone the repo
-2. Install the dependencies
+1. Clone the repository
+2. Change the directory to UI
+3. Install the dependencies
 ```
 npm install
 ```
-OR
+
+4. Start the server
 ```
-yarn
+npm start
 ```
 
 
@@ -27,20 +29,7 @@ yarn
 npm install
 ```
 
-OR
-
-```
-yarn 
-```
-
 3. Enter the dev command
 ```
 npm run dev
-```
-
-OR
-
-
-```
-yarn dev
 ```
