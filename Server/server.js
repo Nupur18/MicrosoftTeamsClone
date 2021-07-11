@@ -6,6 +6,7 @@ const app = express();
 const httpServer = require("http").createServer(app);
 const cors = require("cors");
 const call = require("./routers/call");
+const chat = require("./routers/chat");
 const auth = require("./routers/auth");
 const mongoose = require("mongoose");
 const authorization = require("./helpers/authorization");
@@ -56,22 +57,21 @@ const io = require("socket.io")(httpServer,options);
 io.use(authorization.wsAuthorize);
 io.on("connection",socket=>{
     console.log(`Socket Connected: ${socket.id}`);
-    // call.updateUserSocketId(socket);
     socket.on('addMe',(data)=>{
         console.log(data);
         call.addCandidate(io,socket,data);
     })
-    // socket.on("addCandidate",(data)=>{
-    //     call.addCandidate(socket,data);        
-    // });
     socket.on('callRequest',(data)=>{
         call.callRequest(io,socket,data);
     })
-    socket.on("getResponse",(data)=>{
-        call.getResponse(io,socket,data);
-    });
-    socket.on("joinCall",(data)=>{
-        call.joinCall(socket,data);
+    socket.on('disconnectMe',(data)=>{
+        call.disconnectMe(io,socket,data);
+    })
+    socket.on('addToRoom',(data)=>{
+        chat.addToRoom(io,socket,data);
+    })
+    socket.on('sendMessage',(data)=>{
+        chat.sendMessage(io,socket,data);
     })
 })
 

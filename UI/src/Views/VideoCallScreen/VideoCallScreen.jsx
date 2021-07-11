@@ -3,21 +3,18 @@ import CallControl from "../../Components/CallControls/CallControl";
 import VideoDisplay from "../../Components/VideoDisplay/VideoDisplay";
 import './videocallscreen.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { setRTC } from '../../Redux/slice/meetSlice';
 import { getSelfStream, captureSelfVideo } from '../../Components/SelfVideo/SelfVideo';
 import { io } from 'socket.io-client';
 import Peer from 'peerjs';
-const socket = io("http://localhost:5000");
+import { useHistory } from 'react-router-dom';
 const VideoCallScreen = () => {
+    const socket = io("http://localhost:5000");
     const [selfStreamControl, setSelfStreamControl] = useState({ 'audio': true, 'video': true });
+    const history = useHistory();
     const user = useSelector((state) => state.auth.user);
+
     const meetingId = useSelector((state) => state.meet.meetingId);
-    const meeting = useSelector((state) => state.meet);
-    console.log(meeting,meetingId);
     const [called,setCalled] = useState(false);
-    const [isReady, setIsReady] = useState(false);
-    const [videoRefs, setVideoRefs] = useState([]);
-    const dispatch = useDispatch();
     const [selfRef, setSelfRef] = useState(null);
     const [participants, setParticipants] = useState([]);
     const [selfStream, setSelfStream] = useState(new MediaStream());
@@ -25,60 +22,87 @@ const VideoCallScreen = () => {
         setSelfStreamControl({ 'audio': controls.microphone, 'video': controls.camera });
         setSelfRef(getSelfStream(selfStreamControl));
     }
+    const removeParticipant = (email) => {
+        let newParticipantLists = participants.filter((participant)=>{
+            return participant.email!=email;
+        });
+        setParticipants(newParticipantLists);
+    }
     const addMe = function (selfStream) {
         socket.emit('addMe', { userDetails: user.payload, meetingId: meetingId });
         socket.on('sendCallRequests', (data) => {
             const participantDetails = data.participants;
-            for(let participant of participantDetails)
-            {
-                const ref = React.createRef();
-                participant.ref= ref;
-            }
-            setParticipants(participantDetails);
             for (let participant of participantDetails) {
                 const peer = new Peer();
+                const ref = React.createRef();
+                participant.ref= ref;
+                participant.peer = peer;
                 peer.on('open', (id) => {
                     socket.emit('callRequest', { toUser: participant.socketId, callId: id, user: user.payload.email });
                     peer.on('call', (call) => {
                         call.answer(selfStream);
                         call.on('stream', (remoteStream) => {
-                        participant.ref.current.srcObject = remoteStream;
+                            participant.ref.current.srcObject = remoteStream;
+                        })
                     })
-                })
-            });
+                });
             }
+            setParticipants(participantDetails);
         });
 
         socket.on("makeCall", (data) => {
-            console.log("Make call to ", data.user)
             const callId = data.callId;
             const participantUser = {email:data.user};
             const ref = React.createRef();
             participantUser.ref=ref;
+
+            const peer = new Peer();
+            participantUser.peer = peer;
             setParticipants((prevState)=>{
                 return [...prevState,participantUser];
             })
-            const peer = new Peer();
             peer.on('open',(id)=>{
-                const call2 = peer.call(callId, selfStream);
+                const call = peer.call(callId, selfStream);
                 
-                call2.on('stream', (remoteStream) => {
+                call.on('stream', (remoteStream) => {
                     participantUser.ref.current.srcObject = remoteStream;
                 })
             })
+        });
+        socket.on('candidateLeft',(data)=>{
+            removeParticipant(data.email);
         })
-
+    }
+    
+    const handleDisconnect = () =>{
+        history.push("/meet");
     }
     useEffect(() => {
-        captureSelfVideo(selfStreamControl).then((stream) => {
-            setSelfStream(stream);
-            if(!called)
-            {
-                addMe(stream);
+        if(!user)
+        {
+            history.push("/signin");
+        }
+        else{
+
+            captureSelfVideo(selfStreamControl).then((stream) => {
+                setSelfStream(stream);
+                if(!called)
+                {
+                    addMe(stream);
                 setCalled(true);
             }
         })
         setSelfRef(getSelfStream(selfStreamControl));
+        return()=>{
+            console.log("I am called");
+            socket.emit("disconnectMe",{userId:user.payload.id,meetingId:meetingId,email:user.payload.email});
+            socket.disconnect();
+            for(let participant of participants)
+            {
+                participant.peer.disconnect();
+            }
+        }
+    }
     }, []);
 
     return (
@@ -91,7 +115,7 @@ const VideoCallScreen = () => {
                 }) : null}
                 <VideoDisplay videoRef={selfRef} self={true} />
             </div>
-            <CallControl changeControl={handleChangeControl} />
+            <CallControl changeControl={handleChangeControl} disconnect={handleDisconnect}/>
         </>
     )
 }

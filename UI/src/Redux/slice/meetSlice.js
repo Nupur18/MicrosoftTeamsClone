@@ -12,11 +12,9 @@ export const meetSlice = createSlice({
   },
   reducers: {
     setMeeting: (state,data)=>{
-      // console.log(data,state);
       state.meetingCode = data.payload.meetingCode;
       state.password = data.payload.password;
       state.meetingId = data.payload.meetingId;
-      // state = {...state,meetingCode:data.meetingCode,password:data.password,meetingId:data.meetingId};
     },
     setSelfStream: (state,stream)=>{
       state.selfStream = stream;
@@ -29,10 +27,18 @@ export const meetSlice = createSlice({
     },
     addVideoRef: (state,videoRef)=>{
       state.videoRefs = [...state.videoRefs,videoRef];
+    },
+    clearData:(state)=>{
+      state.meetingCode=null;
+      state.password=null;
+      state.meetingId=null;
+      state.selfStream=null;
+      state.participants=[];
+      state.videoRefs=[];
     }
   },
 })
 
-export const {setMeeting, setSelfStream,setParticipants,addParticipant,addVideoRef} = meetSlice.actions
+export const {setMeeting, setSelfStream,setParticipants,addParticipant,addVideoRef,clearData} = meetSlice.actions
 
 export default meetSlice.reducer

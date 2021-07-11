@@ -7,8 +7,9 @@ import { useHistory } from 'react-router';
 export const MeetBody = () => {
     const user = useSelector((state)=>state.auth.user);
     const history = useHistory();
+    console.log(user);
     if(!user){
-        history.push("/");
+        history.push("/signin");
     }
     return (
         <div>

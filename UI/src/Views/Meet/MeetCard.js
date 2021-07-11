@@ -99,12 +99,11 @@ function JoinMeetModal(props) {
         })
     }
     const dispatch = useDispatch();
-    const handleSubmit=(e)=>{
-        e.preventDefault();
+    const handleSubmit=(mode)=>{
         axios.post("/call/join",meetingDetails).then((res)=>{
             if(res.data.status==='success'){
                 dispatch(setMeeting({meetingCode:meetingDetails.meetingCode,password:meetingDetails.password,meetingId:res.data.meetingId}));
-                history.push("/videocall");
+                history.push("/"+mode);
             }
             else{
                 setMessage(res.data.message);
@@ -131,7 +130,7 @@ function JoinMeetModal(props) {
                     Join Meet
                 </Modal.Title>
             </Modal.Header>
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={(e)=>{e.preventDefault()}}>
                 <Modal.Body>
                     <p>{message}</p>
                     <p>
@@ -146,8 +145,12 @@ function JoinMeetModal(props) {
                     </p>
                 </Modal.Body>
                 <Modal.Footer id="modalbuttons">
-                    <Link to="/chat"><button className="btn btn-default">Start Chat</button></Link>
-                    <button type="submit" className="btn btn-default">Start Meet</button>
+                    <button className="btn btn-default" onClick={(e)=>{
+                        handleSubmit("chat");
+                    }}>Start Chat</button>
+                    <button className="btn btn-default" onClick={(e)=>{
+                        handleSubmit("videocall");
+                    }}>Start Meet</button>
                 </Modal.Footer>
             </Form>
         </Modal>

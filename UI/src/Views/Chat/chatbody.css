@@ -19,7 +19,6 @@
     margin-top: auto;
 }
 #type-box{
-    background-color: white;
     margin-top: 0.3rem;
     margin-left: 0rem;
     margin-right: 0rem;
@@ -32,25 +31,33 @@
     height: 39px;
     margin-bottom: 4px;
 }
-#message{
+.message{
     padding-right: 20px;
     padding-left: 20px;
+}
+.fullChat{
+    margin: 5px;
+    padding-right: 5px;
     border: 2px solid #FFFFFF;
     border-radius: 12px;
     background-color: #C2D6DA;
     text-align-last: left;
+    clear:both;
+    float: left;
 }
-#message-box{
-    padding-bottom: 15px;
-    padding-left: 250px;
-    padding-right: 5px;
+.fullChat.selfChat{
+    float: right;
+    background-color: #536265;
+    color:#fff;
 }
-#time{
+.time{
     margin-bottom: 0rem ;
+    padding: 5px;
+    float: right;
 }
-#textmessage{
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+.textmessage{
+    margin: 0;
+    padding: 0;
 }
 #chat-window{
     max-width: 900px;

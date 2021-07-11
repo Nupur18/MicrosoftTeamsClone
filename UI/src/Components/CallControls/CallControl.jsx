@@ -24,7 +24,7 @@ const CallControl = (props) => {
             <Button variant="contained" color="secondary" onClick={() => switchControl("microphone")}>
                 {(control.microphone ? <MicOffIcon /> : <MicIcon />)}
             </Button>
-            <Button variant="contained" color='secondary'><CallEndIcon /></Button>
+            <Button variant="contained" color='secondary' onClick={()=>{props.disconnect()}}><CallEndIcon /></Button>
             <Button variant="contained" color="secondary" onClick={() => switchControl("camera")}>
                 {(control.camera ? <VideocamOffIcon /> : <VideocamIcon />)}
             </Button>

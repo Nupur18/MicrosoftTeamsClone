@@ -2,3 +2,4 @@
 */node_modules/
 /UI/src/assets/*
 node_modules/
+.DS_Store

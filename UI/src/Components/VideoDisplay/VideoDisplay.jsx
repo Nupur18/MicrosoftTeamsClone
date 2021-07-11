@@ -8,7 +8,6 @@ const VideoDisplay = (props) =>{
     {
         classList.push('video_wrapper--self');
     }
-    console.log('from display',props.videoRef)
     return (
         <div className={classList.join(" ")}>
             <video ref={props.videoRef} autoPlay muted={props.self}></video>

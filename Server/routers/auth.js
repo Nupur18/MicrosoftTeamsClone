@@ -45,4 +45,18 @@ router.post("/signup",async (req,res)=>{
         res.status(400).json({"message":"Either email or password is missing"});
     }
 })
+router.post("/jwt",async (req,res)=>{
+    const token = req.body.token;
+    if(!token)
+    {
+        return res.status(400).json({"message":"Token not provided"});
+    };
+    const user = await User.findOne({token});
+    if(!user)
+    {
+        return res.status(401).json({"message":"Unauthorized"});
+    }
+    return res.status(200).json(user);
+
+})
 module.exports = router;

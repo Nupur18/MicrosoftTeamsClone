@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
@@ -6,10 +6,10 @@ import {
 } from "react-router-dom";
 import VideoCallScreen from './Views/VideoCallScreen/VideoCallScreen';
 import { Header } from './Components/Header/Header';
-// import HomeBody from './Views/Home/HomeBody';
 import { SignBody } from './Views/Sign/SignBody';
 import { MeetBody } from './Views/Meet/MeetBody';
 import { ChatBody } from './Views/Chat/ChatBody';
+import "./App.css";
 const LazyHomeBody = React.lazy(() => import('./Views/Home/HomeBody'))
 
 function App() {
