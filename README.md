@@ -1,6 +1,8 @@
 # Microsoft Teams Clone
 
-## Folder structure
+<img src = "image.jpg">
+
+## Folder Structure
 
 - *UI* : Front-end part of webapp
 - *Server* : Back-end part of webapp
@@ -22,7 +24,7 @@ npm start
 
 ## Start the Backed Server
 
-1. Change the directory to node-backend 
+1. Change the directory to Server 
 
 2. Install the packages
 ```
