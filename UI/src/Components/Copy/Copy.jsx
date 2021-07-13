@@ -9,7 +9,6 @@ import { useSelector } from 'react-redux';
 export const Copy = () => {
     const meetingCode = useSelector((state)=>state.meet.meetingCode);
     const password = useSelector((state)=>state.meet.password);
-    console.log(meetingCode,password)
     function MeetDetailsModal(props) {
         return (
             <Modal

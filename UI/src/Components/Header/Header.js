@@ -37,6 +37,11 @@ export const Header = (props) => {
                                 </Link>
                             </Grid>
                             <Grid item>
+                            <Link to="/meet">
+                                    <button type="submit" className="btn btn-default" id="video-call-btn"><b>End chat</b></button>
+                                </Link>
+                            </Grid>
+                            <Grid item>
                                 <Logout/>
                             </Grid>
                         </Grid>

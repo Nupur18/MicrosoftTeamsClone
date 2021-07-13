@@ -18,10 +18,6 @@ const VideoCallScreen = () => {
     const [selfRef, setSelfRef] = useState(null);
     const [participants, setParticipants] = useState([]);
     const [selfStream, setSelfStream] = useState(new MediaStream());
-    const handleChangeControl = (controls) => {
-        setSelfStreamControl({ 'audio': controls.microphone, 'video': controls.camera });
-        setSelfRef(getSelfStream(selfStreamControl));
-    }
     const removeParticipant = (email) => {
         let newParticipantLists = participants.filter((participant)=>{
             return participant.email!=email;
@@ -115,7 +111,7 @@ const VideoCallScreen = () => {
                 }) : null}
                 <VideoDisplay videoRef={selfRef} self={true} />
             </div>
-            <CallControl changeControl={handleChangeControl} disconnect={handleDisconnect}/>
+            <CallControl disconnect={handleDisconnect}/>
         </>
     )
 }

@@ -2,33 +2,18 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import CallEndIcon from '@material-ui/icons/CallEnd';
-import MicOffIcon from '@material-ui/icons/MicOff';
-import MicIcon from '@material-ui/icons/Mic';
-import VideocamIcon from '@material-ui/icons/Videocam';
-import VideocamOffIcon from '@material-ui/icons/VideocamOff';
+import ChatIcon from '@material-ui/icons/Chat';
 import './callcontrol.scss';
-import { Messages } from '../CallChat/Messages'
-import { Copy } from '../Copy/Copy'
+import { Copy } from '../Copy/Copy';
+import {Link} from 'react-router-dom';
+
 const CallControl = (props) => {
     const [control, setControl] = useState({ 'microphone': true, 'camera': true });
-    const switchControl = (controlProperty) => {
-        setControl((prevState) => {
-            let newState = {...prevState,[controlProperty]:!prevState[controlProperty]};
-            props.changeControl(newState);
-            return newState;
-        })
-    }
 
     return (
         <div className='call_control'>
-            <Button variant="contained" color="secondary" onClick={() => switchControl("microphone")}>
-                {(control.microphone ? <MicOffIcon /> : <MicIcon />)}
-            </Button>
+            <Link to="/chat"><Button variant="contained" color='secondary'><ChatIcon /></Button></Link>
             <Button variant="contained" color='secondary' onClick={()=>{props.disconnect()}}><CallEndIcon /></Button>
-            <Button variant="contained" color="secondary" onClick={() => switchControl("camera")}>
-                {(control.camera ? <VideocamOffIcon /> : <VideocamIcon />)}
-            </Button>
-            <Messages />
             <Copy />
         </div>
     )
