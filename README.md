@@ -22,7 +22,7 @@ npm start
 
 ## Start the Backed Server
 
-1. Change the directory to node-backend 
+1. Change the directory to Server 
 
 2. Install the packages
 ```
