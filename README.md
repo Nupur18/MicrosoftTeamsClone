@@ -1,6 +1,8 @@
 # Microsoft Teams Clone
 
-## Folder structure
+<img src = "image.jpg">
+
+## Folder Structure
 
 - *UI* : Front-end part of webapp
 - *Server* : Back-end part of webapp
