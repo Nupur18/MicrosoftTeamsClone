@@ -22,7 +22,7 @@ npm start
 ```
 
 
-## Start the Backed Server
+## Start the Backend Server
 
 1. Change the directory to Server 
 
